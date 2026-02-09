@@ -43,6 +43,12 @@ Regenerate all cog blocks in-place:
 cog -r docs/*.md
 ```
 
+Or without installing — use `uv run --with` to run cog in a temporary environment:
+
+```bash
+uv run --with cogapp cog -r docs/*.md
+```
+
 The `-r` flag replaces file contents in-place. Without it, cog writes to stdout.
 
 ## Key Pattern: Embedding CLI --help Output
@@ -100,6 +106,14 @@ Use `--check-fail-msg` to tell developers how to fix it:
 - name: Check if cog needs to be run
   run: |
     cog --check --check-fail-msg='Run "cog -r docs/*.md" to update' docs/*.md
+```
+
+If the project uses uv and cogapp is not a declared dependency, use `uv run --with`:
+
+```yaml
+- name: Check if cog needs to be run
+  run: |
+    uv run --with cogapp cog --check docs/*.md
 ```
 
 ## Other Patterns
