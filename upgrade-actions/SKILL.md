@@ -23,3 +23,5 @@ Also check if the project uses `dependency-groups.dev` in `pyproject.toml` - if 
 in the workflows should use this pattern:
 
     pip install . --group dev
+
+Make sure requires-python is >= 3.10 as well.
