@@ -86,6 +86,23 @@ uv build
 module-root = ""
 ```
 
+## Validation Checklist
+
+After migration, verify each step works before proceeding:
+
+```bash
+# 1. Check uv can resolve and install dependencies
+uv sync
+
+# 2. Run tests through uv
+uv run pytest
+```
+
+**Common issues:**
+- `ModuleNotFoundError` for the package itself → check `[tool.uv.build-backend]` module-root for flat layouts
+- `pytest: error: unrecognized arguments` → verify pytest is listed in `[dependency-groups] dev`
+- `uv build` fails with "no module found" → ensure package directory name matches `[project] name` (with hyphens replaced by underscores)
+
 ## Files to Delete After Migration
 
 - `setup.py`
